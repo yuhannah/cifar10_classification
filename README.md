@@ -34,6 +34,11 @@ input:(32,32,3)-->conv1:(3,3,32)-->relu-->maxpooling-->conv2:(3,3,32)-->relu-->m
 
 在加载 datasets 后，对图像数据进行裁剪、旋转等预处理，扩充原始的数据集，能够提高训练的准确率。
 
+```python
+train_datagen = ImageDataGenerator(rescale=1. / 255, rotation_range=15, width_shift_range=0.15, height_shift_range=0.15, fill_mode='wrap')
+test_datagen = ImageDataGenerator(rescale=1./255)
+```
+
 训练结果：
 
 ![simple_CNN_augmentation_accuracy_loss](output/simple_CNN_augmentation_accuracy_loss.png)
@@ -43,6 +48,8 @@ input:(32,32,3)-->conv1:(3,3,32)-->relu-->maxpooling-->conv2:(3,3,32)-->relu-->m
 ### 使用 VGG16 提取特征
 
 使用 vgg16 模型提取特征，用自定义的全连接层进行训练。去掉 vgg16 模型的输出层，换成自定义的两层全连接层。在训练前，先得到 vgg16 模型的除去最后一层的训练结果，再将结果输入到自定义的两层网络中进行训练。利用训练好的网络模型加快训练速度。（迁移学习）
+
+不含最后一层的权重的 vgg16 网络权重在github上[下载](https://github.com/fchollet/deep-learning-models/releases)。
 
 训练结果：
 
