@@ -6,7 +6,7 @@ cifar10是一个图像数据集（[官网](https://www.cs.toronto.edu/~kriz/cifa
 
 ### 环境
 
-代码运行环境为 python 3.7.4，tensorflow 1.15.0，keras 2.2.4，笔记本电脑 Win10 系统，pyCharm IDE。
+代码运行环境为 python 3.7.4，tensorflow 1.15.0，keras 2.2.4，Win10 系统，pyCharm IDE。
 
 ### 目录
 
