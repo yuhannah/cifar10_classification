@@ -132,18 +132,18 @@ def train():
     model = resnet((32, 32, 3))
     model.compile(loss='categorical_crossentropy', optimizer=Adam(), metrics=['accuracy'])
 
-    checkpoint = ModelCheckpoint(filepath='./resnet/cifar10_resnet_ckpt.h5', monitor='val_acc', verbose=1,
+    checkpoint = ModelCheckpoint(filepath='./resnet/cifar10_resnet_ckpt.h5', monitor='val_accuracy', verbose=1,
                                  save_best_only=True)
     lr_scheduler = LearningRateScheduler(lr_sch)
-    lr_reducer = ReduceLROnPlateau(monitor='val_acc', factor=0.2, patience=5, mode='max', min_lr=1e-3)
+    lr_reducer = ReduceLROnPlateau(monitor='val_accuracy', factor=0.2, patience=5, mode='max', min_lr=1e-3)
     callbacks = [checkpoint, lr_scheduler, lr_reducer]
     hist = model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs_num, validation_data=(x_test, y_test),
                      verbose=1, callbacks=callbacks)
 
     # hist = model.fit_generator(train_datagen.flow(x_train, y_train, batch_size=batch_size), steps_per_epoch = 8000, epochs = epochs_num, validation_data=(x_test,y_test), verbose=1, callbacks=callbacks)
 
-    train_acc = hist.history['acc']
-    val_acc = hist.history['val_acc']
+    train_acc = hist.history['accuracy']
+    val_acc = hist.history['val_accuracy']
     train_loss = hist.history['loss']
     val_loss = hist.history['val_loss']
     print("train acc: ", train_acc)

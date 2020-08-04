@@ -21,7 +21,7 @@ print("Tensorflow keras version " + tf.keras.__version__)
 
 classes_num = 10
 batch_size = 64
-epochs_num = 200
+epochs_num = 300
 
 
 def quality_classify_model():
@@ -44,7 +44,7 @@ def quality_classify_model():
 
 
 def train():
-    # os.environ["CUDA_VISIBLE_DEVICES"] = "5" # 指定序号的GPU训练
+    # os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3,4,5" # 指定序号的GPU训练
 
     # 数据载入：网络 or 本地
     # (x_train, y_train), (x_test, y_test) = tf.keras.datasets.cifar10.load_data()
@@ -72,8 +72,8 @@ def train():
     model.save('./model/simple_CNN/cifar10_model.hdf5')
     model.save_weights('./model/simple_CNN/cifar10_model_weight.hdf5')
 
-    train_acc = hist.history['acc']
-    val_acc = hist.history['val_acc']
+    train_acc = hist.history['accuracy']
+    val_acc = hist.history['val_accuracy']
     train_loss = hist.history['loss']
     val_loss = hist.history['val_loss']
     print("train acc: ", train_acc)

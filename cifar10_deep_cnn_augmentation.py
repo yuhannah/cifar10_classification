@@ -20,8 +20,8 @@ print("Tensorflow version " + tf.__version__)
 print("Tensorflow keras version " + tf.keras.__version__)
 
 classes_num = 10
-batch_size = 32
-epochs_num = 250
+batch_size = 64
+epochs_num = 300
 
 
 def quality_classify_model():
@@ -114,8 +114,8 @@ def train():
     model.save('./model/deep_CNN_augmentation/cifar10_model.hdf5')
     model.save_weights('./model/deep_CNN_augmentation/cifar10_model_weight.hdf5')
 
-    train_acc = hist.history['acc']
-    val_acc = hist.history['val_acc']
+    train_acc = hist.history['accuracy']
+    val_acc = hist.history['val_accuracy']
     train_loss = hist.history['loss']
     val_loss = hist.history['val_loss']
     print("train acc: ", train_acc)
